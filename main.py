@@ -3,11 +3,25 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from openai import OpenAI
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables from the .env file
 load_dotenv()
 
 app = FastAPI()
+
+# Add CORS middleware
+origins = [
+    "https://jacomoolman.co.za",  # Your WordPress site
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Allow requests from this origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Define a Pydantic model for the request body
 class Query(BaseModel):
