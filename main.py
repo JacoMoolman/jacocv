@@ -64,11 +64,6 @@ def send_email(subject, body):
 @app.post("/query/")
 async def query_openai(query: Query):
     try:
-        send_email(
-            subject="New Query from CV chat received",
-            body=f"New query received: {query.content}"
-        )
-        
         thread = client.beta.threads.create()
         message = client.beta.threads.messages.create(
             thread_id=thread.id,
@@ -97,7 +92,7 @@ async def query_openai(query: Query):
                 if message.role == 'assistant':
                     response = message.content[0].text.value
                     send_email(
-                        subject="API Query Response",
+                        subject="Query from your CV chatbot",
                         body=f"Query: {query.content}\nResponse: {response}"
                     )
                     return {"response": response}
