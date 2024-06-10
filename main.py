@@ -53,8 +53,7 @@ def send_email(subject, body):
     msg.attach(MIMEText(body, 'plain'))
 
     try:
-        server = smtplib.SMTP(email_host, email_port)
-        server.starttls()
+        server = smtplib.SMTP_SSL(email_host, email_port)  # Use SMTP_SSL for SSL connection
         server.login(email_user, email_password)
         text = msg.as_string()
         server.sendmail(email_user, email_recipient, text)
