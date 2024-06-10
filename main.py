@@ -65,7 +65,7 @@ def send_email(subject, body):
 async def query_openai(query: Query):
     try:
         send_email(
-            subject="New API Query Received",
+            subject="New Query from CV chat received",
             body=f"New query received: {query.content}"
         )
         
