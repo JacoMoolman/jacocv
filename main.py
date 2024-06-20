@@ -81,7 +81,9 @@ async def query_openai(query: Query):
             If you cannot find any information in the documentation, you MUST inform the user of this, stating that you cannot find the information in the documentation.
             When answering do you do NOT need to respond with "The documentation says this" or "According to the documentation etc". The user is aware that you are getting the information from the documentation.
             If the user asked you anything that is NOT related to Jaco's information please inform the user that you can only assist the task you have been given.
-            Some information in the documentation will refer to Jaco in the first person as he wrote it himself. However, you should always refer to Jaco in the 3rd person."""
+            Some information in the documentation will refer to Jaco in the first person as he wrote it himself. However, you should always refer to Jaco in the 3rd person.
+            When the user refer to "you" or "your" etc. The user is in fact asking about Jaco and not "you" as in GPT.  Assume any "you", "your" etc refer to Jaco
+            """
         )
 
         if run.status == 'completed':
